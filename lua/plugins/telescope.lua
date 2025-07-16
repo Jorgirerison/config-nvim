@@ -11,7 +11,7 @@ return {
     end, { desc = 'Buscar arquivos da config do Neovim' })
     -- Busca no HD externo
     vim.keymap.set('n', '<leader>fp', function()
-     builtin.find_files({ cwd = "/mnt/wwn-0x50014ee65dfab64d-part3/projects" })
-    end, { desc = 'Buscar projetos no HD externo' })
+     builtin.find_files()
+    end, { desc = 'Buscar na raiz do projeto' })
   end
 }

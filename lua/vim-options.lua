@@ -15,6 +15,5 @@ vim.diagnostic.config({
     source = "always",
   },
 })
-vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true, silent = true })
-vim.keymap.set("n", "qq", 'i<Right>""<Left>', { noremap = true })
+vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = true })
 vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
