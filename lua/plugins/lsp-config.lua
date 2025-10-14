@@ -24,14 +24,17 @@ return {
 					-- Suas ferramentas
 					"lua_ls",
 					"pyright",
-					-- Ferramentas do vídeo
+					-- Java
 					"jdtls", --
 					"java-debug-adapter", --
 					"java-test", --
+					--
 					"bashls", --
 					"cssls", --
 					"html", --
 					"jsonls", --
+					--latex
+					"texlab",
 				},
 			})
 			-- Comando para corrigir problema de timing com lazy-loading
@@ -65,21 +68,21 @@ return {
 			})
 
 			-- Configuração específica para o LuaLS para reconhecer o `vim` global
-			lspconfig.lua_ls.setup({
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-							-- workspace = {
-							-- 	library = vim.api.nvim_get_runtime_file("", true),
-							-- },
-							-- runtime = {
-							-- 	version = "LuaJIT",
-							-- },
-						},
-					},
-				},
-			})
+			-- lspconfig.lua_ls.setup({
+			-- 	settings = {
+			-- 		Lua = {
+			-- 			diagnostics = {
+			-- 				globals = { "vim" },
+			-- 				-- workspace = {
+			-- 				-- 	library = vim.api.nvim_get_runtime_file("", true),
+			-- 				-- },
+			-- 				-- runtime = {
+			-- 				-- 	version = "LuaJIT",
+			-- 				-- },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 		end,
 	},
 }
