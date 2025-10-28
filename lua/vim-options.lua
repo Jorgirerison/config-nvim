@@ -5,6 +5,9 @@ local opt = vim.opt
 -- Opções boleanas
 opt.relativenumber = true -- linhas relativas (meu maior xodó)
 opt.expandtab = true -- substitui o tab por espaços
+-- opção ligada ao matchtime
+-- (default)
+-- opt.showmatch = false -- opção relacionada ao destaque no fechamento do parentese
 
 -- Opções funcionais
 opt.mouse = ""
@@ -16,9 +19,20 @@ opt.linebreak = true -- Palavras que não cabem na tela serão colocadas na pró
 
 -- Opçoẽs numéricas
 opt.tabstop = 2
+-- opção abaixo descreve o tempo de 0.5 s
+-- ao escrever o fechamento de um parentese o cursor
+-- teleporta automaticamente para o primeiro
+-- parentese quando showmatch está ativo
+-- (default)
+-- opt.matchtime = 5
+
+-- devido a opção abaixo
+-- keymaps de identação em keymaps.lua
+-- afim de identar no modo de inserção
 opt.shiftwidth = 2 -- largura da identação
+
 opt.tabstop = 2 -- largura do tab
-opt.numberwidth = 2 -- largua do espaçamento da numeração das linhas
+opt.numberwidth = 5 -- largura do espaçamento da numeração das linhas
 
 vim.diagnostic.config({
 	virtual_text = true, -- mostra o erro em linha
