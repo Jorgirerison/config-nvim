@@ -6,11 +6,22 @@ return {
       require("toggleterm").setup()
       -- keymaps
       local keymap = vim.keymap.set
-      keymap("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "[T]oggle[T]erm" })
+      keymap("n", "<leader>tt", "<Cmd>ToggleTerm<CR>", { desc = "[T]oggle[T]erm" })
+
+      -- =======================================================
+      -- == NOVOS MAPEAMENTOS PARA TERMINAIS VERTICAIS ==
+      -- =======================================================
+      -- Mapeamento para o terminal #2, forçado a ser vertical
+      keymap("n", "<leader>tv1", "<Cmd>2ToggleTerm direction=horizontal<CR>", { desc = "[T]oggle [V]ertical 1" })
+      -- Mapeamento para o terminal #3, forçado a ser vertical
+      keymap("n", "<leader>tv2", "<Cmd>3ToggleTerm direction=horizontal<CR>", { desc = "[T]oggle [V]ertical 2" })
+      -- Você pode adicionar <leader>tv3 para :4ToggleTerm, etc.
+      -- =======================================================
+
       keymap("t", "<C-w>", [[<C-\><C-n><C-w>]], { desc = "ToggleTerm: Navegar entre janelas" })
       keymap('t', '<esc>', [[<C-\><C-n>]], { desc = "ToggleTerm: Ir para o modo de vizualização do terminal" })
       keymap("t", "jk", [[<C-\><C-n>]], { desc = "ToggleTerm: Ir para o modo de vizualização do terminal" })
-      keymap("n", "<leader>r", [[<cmd>TermExec cmd="python main.py" dir=%:h<CR>]], {
+      keymap("n", "<leader>r", [[<cmd>TermExec cmd="python -m src.main" dir=%:h<CR>]], {
           noremap = true, -- Já é o padrão, mas é bom ser explícito
           silent = true,  -- Não mostra o comando na linha de comando
           desc = "Executar main.py e voltar ao modo Normal"

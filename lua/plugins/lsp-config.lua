@@ -14,75 +14,58 @@ return {
 			require("mason").setup()
 		end,
 	},
-	-- NOVO: Adicionado para instalar LSPs, depuradores, etc. de forma centralizada
 	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		config = function()
-			require("mason-tool-installer").setup({
-				-- Lista unificada de todas as ferramentas a serem instaladas
-				ensure_installed = {
-					-- Suas ferramentas
-					"lua_ls",
-					"pyright",
-					-- Java
-					"jdtls", --
-					"java-debug-adapter", --
-					"java-test", --
-					--
-					"bashls", --
-					"cssls", --
-					"html", --
-					"jsonls", --
-					--latex
-					"texlab",
-				},
-			})
-			-- Comando para corrigir problema de timing com lazy-loading
-			vim.api.nvim_command("MasonToolsInstall")
-		end,
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
+		opts = {
+			auto_install = true,
+		},
 	},
-	-- MODIFICADO: Bloco principal de configuração do LSP
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			-- Plugins opcionais, mas úteis, do vídeo
-			{ "j-hui/fidget.nvim", opts = {} }, --
-			{ "folke/neodev.nvim", opts = {} }, --
-		},
+		lazy = false,
 		config = function()
-			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local lsp = vim.lsp
 
-			-- Configuração automática de LSPs instalados pelo Mason
-			require("mason-lspconfig").setup({
-				-- Função que roda para cada servidor
-				function(server_name)
-					-- Ignora o 'jdtls' para configuração manual em outro lugar
-					if server_name ~= "jdtls" then
-						lspconfig[server_name].setup({
-							capabilities = capabilities,
-						})
-					end
-				end,
+			lsp.config("ts_ls", {
+				capabilities = capabilities,
+			})
+			lsp.config("lua_ls", {
+				capabilities = capabilities,
 			})
 
-			-- Configuração específica para o LuaLS para reconhecer o `vim` global
-			-- lspconfig.lua_ls.setup({
-			-- 	settings = {
-			-- 		Lua = {
-			-- 			diagnostics = {
-			-- 				globals = { "vim" },
-			-- 				-- workspace = {
-			-- 				-- 	library = vim.api.nvim_get_runtime_file("", true),
-			-- 				-- },
-			-- 				-- runtime = {
-			-- 				-- 	version = "LuaJIT",
-			-- 				-- },
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
+			vim.keymap.set("n", "K", lsp.buf.hover, {})
+			vim.keymap.set("n", "<leader>gd", lsp.buf.definition, { desc = "[g]o to [definition]"})
+			vim.keymap.set("n", "<leader>gr", lsp.buf.references, { desc = "[g]o to [references]"})
+			vim.keymap.set("n", "<leader>ca", lsp.buf.code_action, { desc = "[c]ode [a]ction"})
 		end,
 	},
+	-- CONFIG ANTIGA QUE USAVA PARA CONFIGURAR O JAVA
+	-- NÃO USAR
+	-- {
+	-- 	"neovim/nvim-lspconfig",
+	-- 	dependencies = {
+	-- 		"williamboman/mason-lspconfig.nvim",
+	-- 		-- Plugins opcionais, mas úteis, do vídeo
+	-- 		{ "j-hui/fidget.nvim", opts = {} }, --
+	-- 		{ "folke/neodev.nvim", opts = {} }, --
+	-- 	},
+	-- 	config = function()
+	-- 		local lspconfig = require("lspconfig")
+	-- 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+	-- 		-- Configuração automática de LSPs instalados pelo Mason
+	-- 		require("mason-lspconfig").setup({
+	-- 			-- Função que roda para cada servidor
+	-- 			function(server_name)
+	-- 				-- Ignora o 'jdtls' para configuração manual em outro lugar
+	-- 				if server_name ~= "jdtls" then
+	-- 					lspconfig[server_name].setup({
+	-- 						capabilities = capabilities,
+	-- 					})
+	-- 				end
+	-- 			end,
+	-- 		})
+	-- },
 }

@@ -46,10 +46,10 @@ map("n", "<leader>w", ":w<CR>", { desc = "Save buffer"})
 map("n", "<leader>W", ":wa<CR>", { desc = "Save all buffers"})
 
 -- Forçar saída de todos os buffers
-map("n", "<leader>q", ":q<CR>", { desc = "[q]uit"})
+map("n", "<leader>q", ":q<CR>", { desc = "[q]uit", silent = true})
 
 -- Forçar saída de todos os buffers
-map("n", "<leader>Q", ":qa!<CR>", { desc = "[Q]uit [A]ll (forçar saída)"})
+map("n", "<leader>Q", ":qa!<CR>", { desc = "[Q]uit [A]ll (forçar saída)", silent = true})
 
 -- Criar novo arquivo
 map("n", "t", ":enew<CR>", { desc = "Create new buffer"})
@@ -79,8 +79,25 @@ map("n", "<leader>srn", ":setlocal relativenumber!<CR>", {
 -- Deixar a palavra atual maiúscula
 map("i", "<C-u>", "<esc>viwUea", { desc = "Uppercase word in focus" })
 
+-- Deixar palavra em negrito em markdown
+map("i", "<C-b>", "<esc>bi**<esc>ea**", { desc = "Bold word in focus" })
+
+-- Deixar palavra em code block do markdown
+map("i", "<C-c>", "<esc>bi`<esc>ea`", { desc = "Code block word in focus" })
+
 -- Sair do modo de inserção
 map("i", "jk", "<esc>", { desc = "Exit from insert mood" })
 
--- pois funciona corretamente mesmo que o cursor esteja no meio da palavra.
--- A sua versão original também é funcional.
+-- -----------------------------------------------------------------------------
+-- Modo VISUAL
+-- -----------------------------------------------------------------------------
+
+-- gv re-seleciona a última seleção visual
+vim.api.nvim_set_keymap('v', '<leader>s', [[:w! /mnt/meuHDExterno/projects/creation-anki-cards-auto/anotacoes.txt]], {
+  noremap = true,
+  silent = true,
+  desc = "Sobescrever arquivo com seleção"
+})
+
+-- deixa a seleção em negrito em markdown
+map("x", "<C-b>", "c**<esc>pa**", { desc = "Deixar seleção em negrito"})
