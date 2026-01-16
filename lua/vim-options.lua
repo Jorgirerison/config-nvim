@@ -1,6 +1,17 @@
 -- api global de lua pode ser chamado com 'vim.'
 -- tabela onde cada chave é uma opção do Vim
 local opt = vim.opt
+local add = vim.filetype.add
+
+-- reconher log como arquivo
+add({
+	extension = {
+		log = "log",
+		-- Aqui você pode adicionar outras no futuro
+		conf = "conf",
+		env = "sh",
+	},
+})
 
 -- Opções boleanas
 opt.relativenumber = true -- linhas relativas (meu maior xodó)
@@ -16,6 +27,7 @@ opt.mouse = ""
 opt.termguicolors = true -- Habilita cores de 24-bit no terminal
 opt.wrap = true -- Quebra linha para o conteúdo ficar todo na tela
 opt.linebreak = true -- Palavras que não cabem na tela serão colocadas na próxima linha
+opt.incsearch = true
 
 -- Opçoẽs numéricas
 opt.tabstop = 2
@@ -29,10 +41,11 @@ opt.tabstop = 2
 -- devido a opção abaixo
 -- keymaps de identação em keymaps.lua
 -- afim de identar no modo de inserção
-opt.shiftwidth = 2 -- largura da identação
+opt.shiftwidth = 2 -- Tamanho da indentação (para >>, <<)
 
 opt.tabstop = 2 -- largura do tab
 opt.numberwidth = 5 -- largura do espaçamento da numeração das linhas
+opt.scrolloff = 3 -- limita o cursor quando scrollar
 
 vim.diagnostic.config({
 	virtual_text = true, -- mostra o erro em linha

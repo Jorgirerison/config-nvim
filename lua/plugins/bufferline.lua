@@ -35,9 +35,9 @@ return {
 		vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next Buffer" })
 		vim.keymap.set("n", "<C-PageUp>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev Buffer" })
 		vim.keymap.set("n", "<C-PageDown>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next Buffer" })
-    vim.keymap.set("n", "[B", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer prev" })
-    vim.keymap.set("n", "<<", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer prev" })
-    vim.keymap.set("n", "]B", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer next" })
-    vim.keymap.set("n", ">>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer next" })
+		vim.keymap.set("n", "[B", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer prev" })
+		vim.keymap.set("n", "<<", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer prev" })
+		vim.keymap.set("n", "]B", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer next" })
+		vim.keymap.set("n", ">>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer next" })
 	end,
 }
