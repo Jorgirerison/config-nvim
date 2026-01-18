@@ -41,22 +41,30 @@ map("n", "<leader>y", '"+yy')
 
 -- tentando exec código em python
 map("n", "<leader>r", function()
-	-- 1. Salva o arquivo
+	-- 1. Verifica se existe um runner definido para este arquivo
+	local runner = vim.b.cmd_runner
+	if not runner then
+		print("Nenhum executor configurado para este tipo de arquivo.")
+		return
+	end
+
+	-- 2. Salva o arquivo
 	vim.cmd("write")
 
-	-- 2. Pega o caminho completo do arquivo
+	-- 3. Pega o caminho completo do arquivo
 	local file_path = vim.fn.expand("%:p")
 
-	-- 3. Monta o comando direcionado ao alvo "term"
-	-- -t term : Procura uma janela ou sessão nomeada "term"
-	local cmd = 'tmux send-keys -t term "python ' .. file_path .. '" C-m'
+	-- 4. Monta o comando dinâmico (usa a variável runner)
+	-- Ex: "node /caminho/arquivo.js" ou "python /caminho/arquivo.py"
+	local cmd = string.format('tmux send-keys -t term "%s %s" C-m', runner, file_path)
 
-	-- 4. Executa
+	-- 5. Executa
+	-- (Assumindo que sua função 'system' é um wrapper para vim.fn.system ou os.execute)
 	system(cmd)
 
-	-- (Opcional) Se você quiser que o cursor PULE para a janela term automaticamente:
-	system("tmux select-window -t term")
-end, { desc = "Executar python na janela term" })
+	-- Opcional: Pular para a janela
+	vim.fn.system("tmux select-window -t term")
+end, { desc = "Executar arquivo atual no tmux" })
 
 -- -----------------------------------------------------------------------------
 -- Formatações (Modo de INSERÇÃO)
