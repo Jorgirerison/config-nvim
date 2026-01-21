@@ -21,7 +21,7 @@ return {
 
 		-- 3. Cria a regra para desativar em arquivos Markdown
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "quarto", "text", "log", "markdown" },
+			pattern = { "quarto", "text", "log", "markdown", "tex" },
 			callback = function()
 				vim.b.cinnamon_disable = true
 			end,
