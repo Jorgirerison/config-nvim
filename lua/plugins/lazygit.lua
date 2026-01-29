@@ -29,7 +29,4 @@ return {
 		})
 	end,
 	-- Configuração das teclas (Keymaps)
-	keys = {
-		{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "Abrir LazyGit" },
-	},
 }

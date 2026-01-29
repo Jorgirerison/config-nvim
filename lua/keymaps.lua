@@ -66,6 +66,25 @@ map("n", "<leader>r", function()
 	vim.fn.system("tmux select-window -t term")
 end, { desc = "Executar arquivo atual no tmux" })
 
+-- Abre o Lazygit numa nova janela (aba) do Tmux
+map("n", "<leader>gg", function()
+	-- 1. Pega o diretório do arquivo que você está editando agora
+	-- (Isso resolve o problema de abrir o nvim da Home)
+	local file_dir = vim.fn.expand("%:p:h")
+
+	-- Se não tiver arquivo aberto (buffer vazio), pega o diretório atual do nvim
+	if file_dir == "" then
+		file_dir = vim.fn.getcwd()
+	end
+
+	-- 2. Monta o comando do Tmux
+	-- O '-d' força o tmux a mudar para esse diretório antes de abrir
+	local cmd = "tmux popup -d " .. vim.fn.shellescape(file_dir) .. " -xC -yC -w90% -h90% -E lazygit"
+
+	-- 3. Executa silenciosamente pelo sistema (não trava a tela do nvim)
+	os.execute(cmd)
+end, { desc = "Lazygit no Tmux" })
+
 -- -----------------------------------------------------------------------------
 -- Formatações (Modo de INSERÇÃO)
 -- -----------------------------------------------------------------------------
