@@ -22,7 +22,9 @@ return {
 					require("none-ls.diagnostics.flake8"), -- <- substituição correta aqui
 
 					-- DJANGO ADDED
-					null_ls.builtins.formatting.djlint, -- (indentação)
+					null_ls.builtins.formatting.djlint.with({
+						extra_args = { "--indent", "2", "--profile", "django" },
+					}), -- (indentação)
 					null_ls.builtins.diagnostics.djlint, --(fechamento de tags)
 				},
 			})
