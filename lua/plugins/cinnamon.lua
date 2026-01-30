@@ -4,7 +4,7 @@ return {
 	opts = {
 		options = {
 			max_delta = {
-				line = 100, -- Se o salto for maior que 2000 linhas, vai instantâneo
+				line = 20, -- limite de linhas p/animar
 				column = 10, -- (Opcional) Limite para movimento horizontal
 				time = 150, -- (Opcional) Se a animação for levar mais de 1000ms, cancela
 			},

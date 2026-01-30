@@ -13,6 +13,24 @@ add({
 	},
 })
 
+-- differentiating djangoTemplate from html
+add({
+	extension = {
+		html = function(path, bufnr)
+			-- Lê as primeiras 50 linhas do arquivo (pra não pesar em arquivos gigantes)
+			local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 50, false)
+			for _, line in ipairs(lines) do
+				-- Se encontrar tags de template Django/Jinja
+				if line:match("{%%") or line:match("{{") or line:match("{#") then
+					return "htmldjango"
+				end
+			end
+			-- Se não achar nada, mantém como html puro
+			return "html"
+		end,
+	},
+})
+
 -- Opções boleanas
 opt.relativenumber = true -- linhas relativas (meu maior xodó)
 opt.expandtab = true -- substitui o tab por espaços

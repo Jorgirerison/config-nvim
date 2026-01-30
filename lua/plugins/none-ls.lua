@@ -10,15 +10,20 @@ return {
 
 			null_ls.setup({
 				sources = {
+					-- formatters
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.black,
 					null_ls.builtins.formatting.isort,
-					null_ls.builtins.formatting.rubocop,
-					null_ls.builtins.diagnostics.rubocop,
+
+					-- diagnostics
 					null_ls.builtins.diagnostics.mypy,
 					require("none-ls.diagnostics.eslint"), -- <- substituição correta aqui
 					require("none-ls.diagnostics.flake8"), -- <- substituição correta aqui
+
+					-- DJANGO ADDED
+					null_ls.builtins.formatting.djlint, -- (indentação)
+					null_ls.builtins.diagnostics.djlint, --(fechamento de tags)
 				},
 			})
 
