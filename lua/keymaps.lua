@@ -149,6 +149,8 @@ map("n", "<leader>%", ":vsp<CR>", {
 -- No modo de inserção, Ctrl+l age como a seta para a direita
 vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move cursor right in insert mode" })
 
+map("n", "<leader>h", ":noh<CR>")
+
 -- -----------------------------------------------------------------------------
 -- Modo de INSERÇÃO
 -- -----------------------------------------------------------------------------

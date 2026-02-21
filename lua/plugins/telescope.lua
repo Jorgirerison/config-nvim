@@ -16,7 +16,13 @@ return {
 			telescope.setup({
 				defaults = {
 					-- Otimização visual para não poluir
-					file_ignore_patterns = { "node_modules", ".git" },
+					file_ignore_patterns = {
+						"node_modules",
+						".git",
+						"venv",
+						".venv",
+						"%.env",
+					},
 				},
 				extensions = {
 					["ui-select"] = {
