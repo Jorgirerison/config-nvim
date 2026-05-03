@@ -32,12 +32,23 @@ add({
 })
 
 -- Opções boleanas
+-- Ativa a exibição de caracteres invisíveis
+opt.list = true
+-- Define os "marcadorsinhos"
+opt.listchars = {
+	eol = "¬", -- (Opcional) Uma seta indicando a quebra de linha (Enter)
+	tab = "  ", -- (Opcional) Uma seta indicando a quebra de linha (Enter)
+}
 opt.relativenumber = true -- linhas relativas (meu maior xodó)
 opt.expandtab = true -- substitui o tab por espaços
 -- opção ligada ao matchtime
 -- (default)
 -- opt.showmatch = false -- opção relacionada ao destaque no fechamento do parentese
+opt.number = true -- Mostra os números das linhas
+opt.cursorline = true -- Habilita o destaque da linha do cursor
 
+-- Se quiser destacar APENAS o número (e não a linha inteira, para não poluir):
+opt.cursorlineopt = "number"
 -- Opções funcionais
 opt.mouse = ""
 
@@ -48,6 +59,9 @@ opt.linebreak = true -- Palavras que não cabem na tela serão colocadas na pró
 opt.incsearch = true
 
 -- Opçoẽs numéricas
+-- NEORG --
+-- opção para esconder o caminho dos links
+opt.conceallevel = 2
 opt.tabstop = 2
 -- opção abaixo descreve o tempo de 0.5 s
 -- ao escrever o fechamento de um parentese o cursor
@@ -77,4 +91,4 @@ vim.diagnostic.config({
 	},
 })
 
-vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
+vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/.venv/bin/python3")

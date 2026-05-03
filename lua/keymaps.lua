@@ -28,7 +28,7 @@ map("n", "<leader>u", "viwUe<esc>", { desc = "Focus word in Uppercase" })
 map("n", "<leader>`", "viw<esc>a`<esc>bi`<esc>lel", { desc = "Focus word between crase" })
 
 -- Deixa palavra atual entre * *
-map("n", "<C-i>", "viw<esc>a*<esc>bi*<esc>lel", { desc = "Focus word between crase" })
+-- map("n", "<C-i>", "viw<esc>a*<esc>bi*<esc>lel", { desc = "Focus word between crase" })
 
 -- -- Deixa palavra atual **entre** ** **
 -- map("n", "<C-b>", "viw<esc>a**<esc>Bi**<esc>E", { desc = "Focus word between crase" })
@@ -105,7 +105,7 @@ map("n", "<C-s>", ":w<CR>", { desc = "Write buffer" })
 map("n", "<C-a>", "ggVG", { desc = "Select all content" })
 
 -- Fechar o buffer (aba)
-map("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Buffer delete" })
+-- map("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Buffer delete" })
 
 -- Salvar buffer atual e sair
 map("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
@@ -186,7 +186,7 @@ vim.api.nvim_set_keymap("v", "<leader>s", [[:w! /mnt/meuHDExterno/projects/creat
 map("x", "<C-b>", "c**<esc>pa**", { desc = "Deixar seleção em negrito" })
 
 -- deixa a seleção em itálico em markdown
-map("x", "<C-i>", "c*<esc>pa*", { desc = "Deixar seleção em negrito" })
+-- map("x", "<C-i>", "c*<esc>pa*", { desc = "Deixar seleção em negrito" })
 
 -- "deixa a seleção com aspas duplas
 map("x", '<leader>"', 'c"<esc>pa"', { desc = "Deixar seleção com aspas duplas" })

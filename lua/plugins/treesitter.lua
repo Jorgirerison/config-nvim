@@ -1,31 +1,40 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "master",
+	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		local config = require("nvim-treesitter.configs")
-		config.setup({
+		require("nvim-treesitter.install").prefer_git = true
+		require("nvim-treesitter.configs").setup({
+			-- Preenchendo chaves vazias para evitar bugs internos
+			modules = {},
+			sync_install = false,
+			ignore_install = {},
+			auto_install = true,
+
+			-- O seu combo essencial
 			ensure_installed = {
-				-- O básico do Neovim
 				"lua",
 				"vim",
 				"vimdoc",
 				"query",
-
-				-- Documentação e config
 				"markdown",
 				"markdown_inline",
 				"yaml",
-
-				-- O Combo Django/Web (Essencial)
-				"htmldjango", -- Lida com {% ... %}
-				"html", -- Lida com as tags <div>, <body>
-				"python", -- Lida com a lógica dentro do Django
-				"css", -- Para <style> dentro do HTML
-				"javascript", -- Para <script>
+				"htmldjango",
+				"html",
+				"python",
+				"css",
+				"javascript",
 			},
-			auto_install = true,
-			highlight = { enable = true },
-			indent = { enable = true },
+
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false, -- Desativa o sistema antigo para evitar conflitos
+			},
+			indent = {
+				enable = true,
+			},
 		})
 	end,
 }

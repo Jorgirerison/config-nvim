@@ -37,6 +37,11 @@ return {
 			-- --- KEYMAPS ---
 
 			-- Busca no dir da config do Neovim
+			map("n", "<leader>fg", function()
+				builtin.live_grep({})
+			end, { desc = "Buscar conteúdo dentro dos arquivos" })
+
+			-- Busca no dir da config do Neovim
 			map("n", "<leader>fc", function()
 				builtin.find_files({
 					cwd = vim.fn.stdpath("config"),
